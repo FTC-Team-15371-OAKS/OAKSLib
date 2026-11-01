@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.library' version '8.7.0'
+    id 'maven-publish'
+}
+
+android {
+    namespace = 'org.oakslib'
+    compileSdk 34
+    defaultConfig {
+        minSdk 25
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+}
+
+dependencies {
+    api 'org.firstinspires.ftc:RobotCore:11.0.0'
+    api 'com.pedropathing:ftc:2.0.4'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation 'junit:junit:4.13.2'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.FTC-Team-15371-OAKS'
+                artifactId = 'OAKSLib'
+                version = '0.1.0'
+            }
+        }
+    }
+}
