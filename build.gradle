@@ -1,11 +1,11 @@
 plugins {
-    id 'com.android.library' version '8.7.0'
+    id 'com.android.library' version '8.13.2'
     id 'maven-publish'
 }
 
 android {
     namespace = 'org.oakslib'
-    compileSdk 34
+    compileSdk 36
     defaultConfig {
         minSdk 25
     }
@@ -21,9 +21,8 @@ android {
 }
 
 dependencies {
-    api 'org.firstinspires.ftc:RobotCore:11.0.0'
+    api 'org.firstinspires.ftc:RobotCore:12.0.0'
     api 'com.pedropathing:ftc:2.0.4'
-    implementation 'com.google.code.gson:gson:2.10.1'
     testImplementation 'junit:junit:4.13.2'
 }
 
@@ -40,7 +39,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.FTC-Team-15371-OAKS'
                 artifactId = 'OAKSLib'
-                version = '0.2.0'
+                version = '0.2.1'
             }
         }
     }
