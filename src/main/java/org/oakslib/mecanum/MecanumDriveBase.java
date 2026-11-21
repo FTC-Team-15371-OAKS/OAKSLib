@@ -12,7 +12,6 @@ public class MecanumDriveBase extends SubsystemBase {
     private final DcMotorEx m_lb;
     private final DcMotorEx m_rf;
     private final DcMotorEx m_rb;
-    private boolean m_inverted;
     private Gamepad m_gamepad;
 
     private int m_controlMode;
@@ -27,18 +26,11 @@ public class MecanumDriveBase extends SubsystemBase {
         m_gamepad = gamepad;
     }
 
-    public void setInverted(boolean inverted) {
-        m_inverted = inverted;
-    }
     public void periodic() {
-        double multiplier = 1;
-        if(m_inverted) {
-            multiplier = -1;
-        }
-        double frontLeftPower = multiplier*m_gamepad.left_stick_y + m_gamepad.left_stick_x + m_gamepad.right_stick_x;
+        double frontLeftPower = m_gamepad.left_stick_y + m_gamepad.left_stick_x + m_gamepad.right_stick_x;
         double frontRightPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x - m_gamepad.right_stick_x;
         double backRightPower = m_gamepad.left_stick_y + m_gamepad.left_stick_x - m_gamepad.right_stick_x;
-        double backLeftPower = multiplier*m_gamepad.left_stick_y - m_gamepad.left_stick_x + m_gamepad.right_stick_x;
+        double backLeftPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x + m_gamepad.right_stick_x;
         switch(m_controlMode) {
             case 0:
                 double maxPower = m_maxPower;

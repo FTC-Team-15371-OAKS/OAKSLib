@@ -32,7 +32,7 @@ Then add the dependency:
 
 ```groovy
 dependencies {
-    implementation 'com.github.FTC-Team-15371-OAKS:OAKSLib:0.2.2'
+    implementation 'com.github.FTC-Team-15371-OAKS:OAKSLib:0.3.0'
 }
 ```
 
