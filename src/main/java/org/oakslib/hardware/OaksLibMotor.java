@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
-public class OakLibMotor implements DcMotor {
+public class OaksLibMotor implements DcMotor {
     @Override
     public MotorConfigurationType getMotorType() {
         return null;
