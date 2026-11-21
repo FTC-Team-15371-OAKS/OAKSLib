@@ -16,6 +16,8 @@ public class MecanumDriveBase extends SubsystemBase {
     private Gamepad m_gamepad;
 
     private int m_controlMode;
+    private double m_maxPower = 1.0;
+    private double m_maxSpeed = 1.0;
     public MecanumDriveBase(DcMotorEx lf, DcMotorEx lb, DcMotorEx rf, DcMotorEx rb, int controlMode, Gamepad gamepad) {
         m_lf = lf;
         m_lb = lb;
@@ -29,15 +31,18 @@ public class MecanumDriveBase extends SubsystemBase {
         m_inverted = inverted;
     }
     public void periodic() {
+        double multiplier = 1;
+        if(m_inverted) {
+            multiplier = -1;
+        }
+        double frontLeftPower = multiplier*m_gamepad.left_stick_y + m_gamepad.left_stick_x + m_gamepad.right_stick_x;
+        double frontRightPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x - m_gamepad.right_stick_x;
+        double backRightPower = m_gamepad.left_stick_y + m_gamepad.left_stick_x - m_gamepad.right_stick_x;
+        double backLeftPower = multiplier*m_gamepad.left_stick_y - m_gamepad.left_stick_x + m_gamepad.right_stick_x;
         switch(m_controlMode) {
             case 0:
-                double frontLeftPower = m_gamepad.left_stick_y + m_gamepad.left_stick_x + m_gamepad.right_stick_x;
-                double frontRightPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x - m_gamepad.right_stick_x;
-                double backRightPower = m_gamepad.left_stick_y + m_gamepad.left_stick_x - m_gamepad.right_stick_x;
-                double backLeftPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x + m_gamepad.right_stick_x;
-
-                double maxPower = 1.0;
-                double maxSpeed = 1.0;  // make this slower for outreaches
+                double maxPower = m_maxPower;
+                double maxSpeed = m_maxSpeed;  // make this slower for outreaches
 
                 // This is needed to make sure we don't pass > 1.0 to any wheel
                 // It allows us to keep all of the motors in proportion to what they should
