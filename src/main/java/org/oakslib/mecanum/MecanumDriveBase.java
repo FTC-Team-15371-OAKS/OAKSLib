@@ -28,9 +28,9 @@ public class MecanumDriveBase extends SubsystemBase {
 
     public void periodic() {
         double frontLeftPower = m_gamepad.left_stick_y + m_gamepad.left_stick_x + m_gamepad.right_stick_x;
-        double frontRightPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x + m_gamepad.right_stick_x;
+        double frontRightPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x - m_gamepad.right_stick_x;
         double backRightPower = m_gamepad.left_stick_y + m_gamepad.left_stick_x - m_gamepad.right_stick_x;
-        double backLeftPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x - m_gamepad.right_stick_x;
+        double backLeftPower = m_gamepad.left_stick_y - m_gamepad.left_stick_x + m_gamepad.right_stick_x;
         switch(m_controlMode) {
             case 0:
                 double maxPower = m_maxPower;
