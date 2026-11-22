@@ -5,13 +5,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
+import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 public class ServoPlus extends HardwareDevice {
-    CRServo m_servo;
+    ServoImplEx m_servo;
     private double m_maxRPM = 312;
-    public ServoPlus(Servo servo) {
-        m_servo = crServo;
-        m_hardwareDevice = crServo;
+    public ServoPlus(ServoImplEx servo) {
+        m_servo = servo;
+        m_hardwareDevice = servo;
     }
     public int getPort() {
         return(m_servo.getPortNumber());
@@ -19,19 +20,16 @@ public class ServoPlus extends HardwareDevice {
     public ServoController getController() {
         return(m_servo.getController());
     }
-    public void setPower(double power) {
-        m_servo.setPower(power);
+    public void setPosition(double power) {
+        m_servo.setPosition(power);
     }
-    public void getPower() {
-        m_servo.getPower();
+    public void getPosition() {
+        m_servo.getPosition();
     }
-    public void setDirection(DcMotorSimple.Direction direction) {
+    public void setDirection(Servo.Direction direction) {
         m_servo.setDirection(direction);
     }
-    public DcMotorSimple.Direction getDirection() {
+    public Servo.Direction getDirection() {
         return(m_servo.getDirection());
-    }
-    public void stop() {
-        m_servo.setPower(0);
     }
 }
