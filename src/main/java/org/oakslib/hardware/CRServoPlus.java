@@ -20,9 +20,9 @@ public class CRServoPlus extends HardwareDevice {
     public ServoController getController() {
         return(m_crServo.getController());
     }
-    public void setPosition() {
-        m_crServo.
-    }
+//    public void setPosition() {
+//        m_crServo.set
+//    }
     public void setPower(double power) {
         m_crServo.setPower(power);
     }
