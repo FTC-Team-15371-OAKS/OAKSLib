@@ -5,19 +5,20 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.oakslib.command.Subsystem;
 import org.oakslib.command.SubsystemBase;
+import org.oakslib.hardware.MotorPlus;
 
 public class MecanumDriveBase extends SubsystemBase {
 
-    private final DcMotorEx m_lf;
-    private final DcMotorEx m_lb;
-    private final DcMotorEx m_rf;
-    private final DcMotorEx m_rb;
+    private final MotorPlus m_lf;
+    private final MotorPlus m_lb;
+    private final MotorPlus m_rf;
+    private final MotorPlus m_rb;
     private Gamepad m_gamepad;
 
     private int m_controlMode;
     private double m_maxPower = 1.0;
     private double m_maxSpeed = 1.0;
-    public MecanumDriveBase(DcMotorEx lf, DcMotorEx lb, DcMotorEx rf, DcMotorEx rb, int controlMode, Gamepad gamepad) {
+    public MecanumDriveBase(MotorPlus lf, MotorPlus lb, MotorPlus rf, MotorPlus rb, int controlMode, Gamepad gamepad) {
         m_lf = lf;
         m_lb = lb;
         m_rf = rf;
